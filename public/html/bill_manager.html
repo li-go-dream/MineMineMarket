@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/css/style.css"/>
+	</head>
+	<body>
+		<div class="con"></div>
+		<div class="operation">
+			<ol class="breadcrumb">
+			  <li class="active"><img src="/imgs/proj/home.png"/> 你所在的位置:</li>
+			  <li class="active">账单管理页面</li>
+			</ol>
+			<div class="navbar navbar-default">
+				<div class="container-fluid">
+				    <div class="navbar-header">
+					     <form class="navbar-form navbar-left">
+					        <div class="form-group">
+					          <lable>商品名称 : </lable><input type="text" id="look-name" class="form-control" placeholder="请输入商品名称">
+					          <lable>供应商 : </lable><input type="text" id="look-supplier" class="form-control" placeholder="请输入供应商">
+					          <lable>是否付款 : </lable><input type="text" id="look-pay" class="form-control" placeholder="请输入是或否">
+					        </div>
+					        <button type="button" class="btn btn-default btn-look" style="color: white;background: #8bc93a;"><img src="/imgs/proj/search.png"/>查询</button>
+					      </form>
+				    </div>
+				
+				    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				      <ul class="nav navbar-nav navbar-right">
+				      	 <li data-toggle="modal" data-target="#addOrder" class="btn btn-default btn-top" style="color: white;background: #8bc93a;"><img src="/imgs/proj/tianjia.png"/>添加订单</li>
+				      </ul>
+				    </div><!-- /.navbar-collapse -->
+			 	 </div><!-- /.container-fluid -->
+			</div>
+			<!--添加模态框-->
+			<div class="modal fade" id="addOrder" tabindex="-1" role="dialog">
+				<div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        <h4 class="modal-title">添加订单</h4>
+				      </div>
+				      <div class="modal-body">
+				        <form class="add-pos-form">
+						  <div class="form-group">
+						    <label for="addBillname">商品名称</label>
+						    <input type="text" name="name" class="form-control" id="addBillname" >
+						  </div>
+						  <div class="form-group">
+						    <label for="addBillunit">商品单位</label>
+						    <input type="text" name="unit" class="form-control" id="addBillunit" >
+						  </div>
+						  <div class="form-group">
+						    <label for="addBillnumb">商品数量</label>
+						    <input type="text" name="numb" class="form-control" id="addBillnumb" >
+						  </div>
+						  <div class="form-group">
+						    <label for="addBillsum">总金额</label>
+						    <input type="text" name="sum" class="form-control" id="addBillsum" >
+						  </div>
+						  <div class="form-group">
+						    <label for="addBillsupplier">供应商</label>
+						    <input type="text" name="supplier" class="form-control" id="addBillsupplier" >
+						  </div>
+						  <div class="form-group">
+						    <label for="addBillpayment">是否付款</label>
+						    <input type="text" name="payment" class="form-control" id="addBillpayment" >
+						  </div>
+						</form>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+				        <button type="button" class="btn btn-primary btn-add-bill">添加</button>
+				      </div>
+				    </div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+			<!--修改模态框-->
+			<div class="modal fade" id="updateOrder" tabindex="-1" role="dialog">
+				<div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        <h4 class="modal-title">修改订单</h4>
+				      </div>
+				      <div class="modal-body">
+				        <form class="update-pos-form">
+						  <div class="form-group">
+						    <label for="addBillname">商品名称</label>
+						    <input type="text" name="name" class="form-control" id="updateBillname" >
+						  </div>
+						  <div class="form-group">
+						    <label for="addBillunit">商品单位</label>
+						    <input type="text" name="unit" class="form-control" id="updateBillunit" >
+						  </div>
+						  <div class="form-group">
+						    <label for="addBillnumb">商品数量</label>
+						    <input type="text" name="numb" class="form-control" id="updateBillnumb" >
+						  </div>
+						  <div class="form-group">
+						    <label for="addBillsum">总金额</label>
+						    <input type="text" name="sum" class="form-control" id="updateBillsum" >
+						  </div>
+						  <div class="form-group">
+						    <label for="addBillsupplier">供应商</label>
+						    <input type="text" name="supplier" class="form-control" id="updateBillsupplier" >
+						  </div>
+						  <div class="form-group">
+						    <label for="addBillpayment">是否付款</label>
+						    <input type="text" name="payment" class="form-control" id="updateBillpayment" >
+						  </div>
+						</form>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+				        <button type="button" class="btn btn-primary btn-update-bill">修改</button>
+				      </div>
+				    </div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div>
+			<table class="table table-striped">
+				<thead>
+					<td>账单编号</td>
+					<td>商品名称</td>
+					<td>商品单位</td>
+					<td>供应商</td>
+					<td>数量</td>
+					<td>账单金额</td>
+					<td>是否付款</td>
+					<td>创建时间</td>
+					<td>操作</td>
+				</thead>
+				<tbody></tbody>
+			</table>
+			<nav aria-label="Page navigation">
+			  <ul class="pagination">
+			    <li class="disabled">
+			      <a href="#" aria-label="Previous">
+			        <span aria-hidden="true">&laquo;</span>
+			      </a>
+			    </li>
+			    <li class="active"><a href="#">1</a></li>
+			    <li><a href="#">2</a></li>
+			    <li><a href="#">3</a></li>
+			    <li>
+			      <a href="#" aria-label="Next">
+			        <span aria-hidden="true">&raquo;</span>
+			      </a>
+			    </li>
+			  </ul>
+			</nav>
+		</div>
+
+		<script type="text/javascript" src="/lib/jquery/jquery-1.12.4.min.js"></script>
+		<script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+		<script src="/js/common/public_html.js"></script>
+		<script src="/js/index.js"></script>
+		<script src="/js/manager/bill.js"></script>
+	</body>
+</html>
