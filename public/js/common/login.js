@@ -11,12 +11,12 @@ $.extend(Login.prototype,{
 	},
 	//登录处理
 	loginHandler(){
-		console.log(2);
+		// console.log(2);
 		const url = "/api/user/login",//URL
 			data = $(".login-form").serialize();//向服务器提交的数据
-		console.log(data);
+		// console.log(data);
 		$.post(url,data,(data)=>{
-			console.log(data);
+			console.log(123123);
 			//处理响应数据
 			if(data.res_code === 1){//登录成功
 				//将登录成功的用户信息保存到 sessionStorage 中
@@ -25,7 +25,6 @@ $.extend(Login.prototype,{
 				window.location.href= "/";
 			}else{ //登录失败
 				$(".login-error").removeClass("hidden");
-
 			}
 		});
 	}
