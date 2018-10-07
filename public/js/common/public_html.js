@@ -1,6 +1,7 @@
 function public_html(){
 	this.createDom();
 	this.addListener();
+	this.loginUser();
 }
 
 public_html.Newhtml=`<nav class="navbar navbar-default header-color">
@@ -12,8 +13,8 @@ public_html.Newhtml=`<nav class="navbar navbar-default header-color">
 		
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      <ul class="nav navbar-nav navbar-right">
-		      	 <li class="hide"><a href="javascript:;" style="color: white;">你好，hh</a></li>
-		      	 <button type="button" class="btn btn-default btn-top hide" style="color: white;background: #8bc93a;">退出</button>
+		      	 <li id="wel" class="hide"><a href="javascript:;" style="color: white;">你好，hh</a></li>
+		      	 <button type="button" id="loginout" class="btn btn-default btn-top hide" style="color: white;background: #8bc93a;">退出</button>
 		      	 <button type="button" id="loginbtn" class="btn btn-default btn-top" style="color: white;background: #8bc93a;">登录</button>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
@@ -36,7 +37,7 @@ public_html.Newhtml=`<nav class="navbar navbar-default header-color">
 			  <li role="presentation"><a href="/html/supplier_manager.html"><img src="/imgs/proj/gys.png"/>供应商管理</a></li>
 			  <li role="presentation"><a href="/html/user_manager.html"><img src="/imgs/proj/yh.png"/>用户管理</a></li>
 			  <li role="presentation"><a href="/html/password_manager.html"><img src="/imgs/proj/mm.png"/>密码修改</a></li>
-			  <li role="presentation"><a href="#"><img src="/imgs/proj/tc.png"/>退出系统</a></li>
+			  <li role="presentation"><a href="#" class="out"><img src="/imgs/proj/tc.png"/>退出系统</a></li>
 			</ul>
 		</div>
 		<div class="right-nav">
@@ -54,6 +55,31 @@ $.extend(public_html.prototype,{
 		$("#loginbtn").on("click",function(){
 			window.location.href="/html/login.html";
 		});
+		$(".out").on("click",this.logoutHandler);
+	},
+	//加载用户登录信息
+	loginUser(){
+		//从sessionStorage  中获取登录成功的用户信息
+		let user = sessionStorage.loginUser;
+		if(!user) //没有登录成功的用户，结束函数调用
+			return;
+
+		//还原解析为JS中的对象
+		user = JSON.parse(user);
+		$("#loginbtn").addClass("hide");
+		$("#loginout").removeClass("hide");
+		$("#wel").removeClass("hide").find("a").text("欢迎:" + user.username);
+	},
+		
+	//注销处理
+	logoutHandler(){
+		//访问后端注销的接口
+		$.get("/api/user/logout",()=>{
+			//清除sessionStorage中保存的数据
+			sessionStorage.removeItem("loginUser");
+			location.reload();
+		})
+
 	}
 })
 new public_html();

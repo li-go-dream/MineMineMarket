@@ -9,15 +9,16 @@ const UserService = {
 		UserDao.find({username})
 		  .then((data)=>{
 		  	// data 是一个数组，存放了所在查找到的满足条件的数据
-		  	console.log(data);
+//		  	console.log(data);
 		  	if (data.length === 1) {
 		  		// 用户信息
 		  		const user = data[0];
-		  		console.log(user.password);
+		  		
 		  		// 比较从请求中获取到用户的密码与实际保存的密码是否匹配
 		  		const b = password == user.password?1:0;
 		  		if (b) { // 登录成功
 		  			// 将用户信息保存到 session 中
+		  			console.log(user);
 		  			req.session.loginUser = user;
 		  			res.json({res_code:1, res_error:"", res_body:{data:{username: user.username}}});
 		  		} else {
