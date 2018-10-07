@@ -56,6 +56,7 @@ $.extend(public_html.prototype,{
 			window.location.href="/html/login.html";
 		});
 		$(".out").on("click",this.logoutHandler);
+		$("#loginout").on("click",this.logoutHandler);
 	},
 	//加载用户登录信息
 	loginUser(){
@@ -69,6 +70,7 @@ $.extend(public_html.prototype,{
 		$("#loginbtn").addClass("hide");
 		$("#loginout").removeClass("hide");
 		$("#wel").removeClass("hide").find("a").text("欢迎:" + user.username);
+		$(".right-nav").addClass("hide");
 	},
 		
 	//注销处理

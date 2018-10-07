@@ -12,21 +12,6 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-// 权限认证
-app.use(function(req, res, next){
-  // 判断请求资源的URL
-  const {url} = req;
-  if (url.endsWith(".html") && url !== "/") { // 访问其它页面资源
-    if (true) // 已有登录用户req.session.loginUser
-      next(); // 继续访问
-    else { // 没有登录用户，跳转到首页
-      res.redirect("/");
-      return;
-    }
-  } else {
-    next();
-  }
-});
 
 
 // view engine setup
@@ -37,7 +22,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 //使用session中间件
 app.use(session({
@@ -46,7 +31,28 @@ app.use(session({
     maxAge : 30 * 60 * 1000
   }
 }));
-
+// 权限认证
+app.use(function(req, res, next){
+  // 判断请求资源的URL
+  const {url} = req;
+  if (url.endsWith(".html") && url !== "/") { 
+  	if(url=="/html/login.html")
+  	{
+  		next();
+  	}else{
+  		if (req.session.loginUser) // 已有登录用户req.session.loginUser
+      next(); // 继续访问
+	    else { // 没有登录用户，跳转到首页
+	      res.redirect("/");
+	      return;
+	    }
+  	}// 访问其它页面资源
+    
+  } else {
+    next();
+  }
+});
+app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/api/user', usersRouter); //访问项目"/api/user"目录的资源
 app.use('/bill',billRouter);
