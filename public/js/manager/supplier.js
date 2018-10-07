@@ -42,9 +42,9 @@ $.extend(supplier.prototype,{
 		});
 	},
 	LoadPosHandler(page){
-		var data=page||1;
+		var page=page||1;
 		const url="/supplier/supplier_manager";
-		$.getJSON(url,{data},(data)=>{
+		$.getJSON(url,{page},(data)=>{
 			// 加载当前页数据
 			const curr = data.res_body.data;
 			var html="";

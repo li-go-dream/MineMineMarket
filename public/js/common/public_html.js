@@ -1,5 +1,6 @@
 function public_html(){
 	this.createDom();
+	this.addListener();
 }
 
 public_html.Newhtml=`<nav class="navbar navbar-default header-color">
@@ -13,7 +14,7 @@ public_html.Newhtml=`<nav class="navbar navbar-default header-color">
 		      <ul class="nav navbar-nav navbar-right">
 		      	 <li class="hide"><a href="javascript:;" style="color: white;">你好，hh</a></li>
 		      	 <button type="button" class="btn btn-default btn-top hide" style="color: white;background: #8bc93a;">退出</button>
-		      	 <button type="button" class="btn btn-default btn-top" style="color: white;background: #8bc93a;">登录</button>
+		      	 <button type="button" id="loginbtn" class="btn btn-default btn-top" style="color: white;background: #8bc93a;">登录</button>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
@@ -48,6 +49,11 @@ public_html.Newhtml=`<nav class="navbar navbar-default header-color">
 $.extend(public_html.prototype,{
 	createDom(){
 		$(public_html.Newhtml).appendTo(".con");
+	},
+	addListener(){
+		$("#loginbtn").on("click",function(){
+			window.location.href="/html/login.html";
+		});
 	}
 })
 new public_html();

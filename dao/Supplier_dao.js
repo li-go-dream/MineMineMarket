@@ -21,6 +21,9 @@ const SupplierDao={
 	},
 	look(conditions){
 		return Supplier.find(conditions);
+	},
+	count(){
+		return Supplier.find().count();
 	}
 };
 

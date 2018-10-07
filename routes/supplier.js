@@ -8,5 +8,6 @@ router.get('/supplier_manager',supplier.find);
 router.get('/dele',supplier.deleted);
 router.get('/update',supplier.updated);
 router.get('/look',supplier.look);
+//router.get('/page',supplier.);
 
 module.exports = router;

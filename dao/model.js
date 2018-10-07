@@ -22,10 +22,16 @@ const BillSchema = new mongoose.Schema({
 	payment: String,
 	publish_time: String
 });
+const userSchema = new mongoose.Schema({
+	username: String,
+	password: String
+});
 
-// 根据供应商Schema创建用户模型
+//根据用户Schema创建用户模型
+const User = mongoose.model("user", userSchema);
+// 根据供应商Schema创建供应商模型
 const Supplier = mongoose.model("supplierManager", SupplierSchema);
-// 根据账单Schema创建职位模型
+// 根据账单Schema创建账单模型
 const Bill = mongoose.model("billManager", BillSchema);
 
-module.exports = {Supplier ,Bill};
+module.exports = {Supplier ,Bill ,User};
